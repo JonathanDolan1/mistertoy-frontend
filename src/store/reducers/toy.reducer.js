@@ -9,19 +9,19 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const TOY_UNDO = 'TOY_UNDO'
 
-//* Shopping toyt
-export const TOGGLE_TOYT_IS_SHOWN = 'TOGGLE_TOYT_IS_SHOWN'
-export const ADD_TOY_TO_TOYT = 'ADD_TOY_TO_TOYT'
-export const REMOVE_TOY_FROM_TOYT = 'REMOVE_TOY_FROM_TOYT'
-export const CLEAR_TOYT = 'CLEAR_TOYT'
+//* Shopping cart
+export const TOGGLE_CART_IS_SHOWN = 'TOGGLE_CART_IS_SHOWN'
+export const ADD_TOY_TO_CART = 'ADD_TOY_TO_CART'
+export const REMOVE_TOY_FROM_CART = 'REMOVE_TOY_FROM_CART'
+export const CLEAR_CART = 'CLEAR_CART'
 
 const initialState = {
     toys: [],
     lastToys: [],
     isLoading: false,
     filterBy: toyService.getDefaultFilter(),
-    isToytShown: false,
-    shoppingToyt: []
+    isCartShown: false,
+    shoppingCart: []
 }
 
 
@@ -67,25 +67,25 @@ export function toyReducer(state = initialState, cmd = {}) {
                 toys: [...state.lastToys]
             }
 
-        //* Shopping toyt
-        case TOGGLE_TOYT_IS_SHOWN:
+        //* Shopping cart
+        case TOGGLE_CART_IS_SHOWN:
             return {
                 ...state,
-                isToytShown: !state.isToytShown
+                isCartShown: !state.isCartShown
             }
-        case ADD_TOY_TO_TOYT:
+        case ADD_TOY_TO_CART:
             return {
                 ...state,
-                shoppingToyt: [...state.shoppingToyt, cmd.toy]
+                shoppingCart: [...state.shoppingCart, cmd.toy]
             }
 
-        case REMOVE_TOY_FROM_TOYT:
-            const shoppingToyt = state.shoppingToyt.filter(toy => toy._id !== cmd.toyId)
-            return { ...state, shoppingToyt }
+        case REMOVE_TOY_FROM_CART:
+            const shoppingCart = state.shoppingCart.filter(toy => toy._id !== cmd.toyId)
+            return { ...state, shoppingCart }
 
 
-        case CLEAR_TOYT:
-            return { ...state, shoppingToyt: [] }
+        case CLEAR_CART:
+            return { ...state, shoppingCart: [] }
 
         default:
             return state

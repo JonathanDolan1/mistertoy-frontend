@@ -4,28 +4,28 @@
 import { useSelector,useDispatch } from 'react-redux'
 
 import { UserMsg } from './UserMsg.jsx'
-import { ShoppingToyt } from './ShoppingToyt.jsx'
-import { TOGGLE_TOYT_IS_SHOWN } from '../store/reducers/toy.reducer.js'
+import { ShoppingCart } from './ShoppingCart.jsx'
+import { TOGGLE_CART_IS_SHOWN } from '../store/reducers/toy.reducer.js'
 
 export function AppFooter() {
 
-    // const [isToytShown, setIsToytShown] = useState(false)
+    // const [isCartShown, setIsCartShown] = useState(false)
     // const count = 101
     // const toysCount = 0
     const count = useSelector(storeState => storeState.userModule.count)
     const toysCount = useSelector(storeState => storeState.toyModule.toys.length)
-    const shoppingToytCount = useSelector(storeState => storeState.toyModule.shoppingToyt.length)
-    const isToytShown = useSelector(storeState => storeState.toyModule.isToytShown)
+    const shoppingCartCount = useSelector(storeState => storeState.toyModule.shoppingCart.length)
+    const isCartShown = useSelector(storeState => storeState.toyModule.isCartShown)
     const dispatch = useDispatch()
 
 
     // TODO: move to storeState
-    const toyt = []
+    const cart = []
     console.log('footer render');
 
-    function onToggleToytIsShown(ev) {
+    function onToggleCartIsShown(ev) {
         ev.preventDefault()
-        dispatch({ type: TOGGLE_TOYT_IS_SHOWN })
+        dispatch({ type: TOGGLE_CART_IS_SHOWN })
     }
     return (
         <footer>
@@ -36,12 +36,12 @@ export function AppFooter() {
                 Coffeerights to all - Count: {count}
             </p>
             <h5>
-                <span>{shoppingToytCount}</span> Products in your Toyt
-                <a href="#" onClick={onToggleToytIsShown}>
-                    ({(isToytShown) ? 'hide' : 'show'})
+                <span>{shoppingCartCount}</span> Products in your Cart
+                <a href="#" onClick={onToggleCartIsShown}>
+                    ({(isCartShown) ? 'hide' : 'show'})
                 </a>
             </h5>
-            <ShoppingToyt isToytShown={isToytShown} />
+            <ShoppingCart isCartShown={isCartShown} />
             <UserMsg />
         </footer>
     )

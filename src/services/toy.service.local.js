@@ -17,16 +17,16 @@ export const toyService = {
 
 
 function query(filterBy = {}) {
-    if (!filterBy.txt) filterBy.txt = ''
-    if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
-    const regExp = new RegExp(filterBy.txt, 'i')
+    // if (!filterBy.txt) filterBy.txt = ''
+    // if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
+    // const regExp = new RegExp(filterBy.txt, 'i')
     return storageService.query(STORAGE_KEY)
-        .then(toys => {
-            return toys.filter(toy =>
-                regExp.test(toy.vendor) &&
-                toy.price <= filterBy.maxPrice
-            )
-        })
+    // .then(toys => {
+    //     return toys.filter(toy =>
+    //         regExp.test(toy.vendor) &&
+    //         toy.price <= filterBy.maxPrice
+    //     )
+    // })
 }
 
 function getById(toyId) {
@@ -41,16 +41,20 @@ function save(toy) {
         return storageService.put(STORAGE_KEY, toy)
     } else {
         // when switching to backend - remove the next line
-        toy.owner = userService.getLoggedinUser()
+        // toy.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, toy)
     }
 }
 
 function getEmptyToy() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+    const toy = {
+        name: '',
+        price: '',
+        labels: [],
+        createdAt: '',
+        inStock: false,
     }
+    return toy
 }
 
 function getDefaultFilter() {

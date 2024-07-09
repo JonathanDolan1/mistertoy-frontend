@@ -8,7 +8,7 @@ import { ToyList } from '../cmps/ToyList.jsx'
 import { toyService } from '../services/toy.service.local.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, removeToyOptimistic, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
-import { ADD_TOY_TO_TOYT } from '../store/reducers/toy.reducer.js'
+import { ADD_TOY_TO_CART } from '../store/reducers/toy.reducer.js'
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
@@ -64,10 +64,10 @@ export function ToyIndex() {
             })
     }
 
-    function addToToyt(toy) {
-        console.log(`Adding ${toy.vendor} to Toyt`)
-        dispatch({ type: ADD_TOY_TO_TOYT, toy })
-        showSuccessMsg(`Added ${toy.vendor} to Toyt`)
+    function addToCart(toy) {
+        console.log(`Adding ${toy.vendor} to Cart`)
+        dispatch({ type: ADD_TOY_TO_CART, toy })
+        showSuccessMsg(`Added ${toy.vendor} to Cart`)
     }
 
     return (
@@ -82,10 +82,10 @@ export function ToyIndex() {
                         toys={toys}
                         onRemoveToy={onRemoveToy}
                         onEditToy={onEditToy}
-                        addToToyt={addToToyt}
+                        addToCart={addToCart}
                     />}
                 <hr />
-                {/* <pre>{JSON.stringify(toyt, null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
             </main>
         </div>
     )

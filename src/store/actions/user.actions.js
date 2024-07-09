@@ -1,5 +1,5 @@
 import { userService } from "../../services/user.service.local.js"
-import { CLEAR_TOYT, TOGGLE_TOYT_IS_SHOWN } from "../reducers/toy.reducer.js"
+import { CLEAR_CART, TOGGLE_CART_IS_SHOWN } from "../reducers/toy.reducer.js"
 import { SET_USER, SET_USER_SCORE} from "../reducers/user.reducer.js"
 import { store } from "../store.js"
 
@@ -41,8 +41,8 @@ export function checkout(diff) {
     return userService.updateScore(-diff)
         .then((newScore) => {
             store.dispatch({ type: SET_USER_SCORE, score: newScore })
-            store.dispatch({ type: CLEAR_TOYT })
-            store.dispatch({ type: TOGGLE_TOYT_IS_SHOWN })
+            store.dispatch({ type: CLEAR_CART })
+            store.dispatch({ type: TOGGLE_CART_IS_SHOWN })
         })
         .catch((err) => {
             console.log('user actions -> Cannot logout', err)
