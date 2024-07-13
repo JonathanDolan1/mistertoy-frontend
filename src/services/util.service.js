@@ -120,9 +120,7 @@ function getRandomTimestamp() {
     tenYearsAgo.setFullYear(now.getFullYear() - 10);
 
     const randomTime = Math.random() * (now.getTime() - tenYearsAgo.getTime()) + tenYearsAgo.getTime();
-    const randomDate = new Date(randomTime);
-
-    return randomDate.toISOString(); // Return ISO string format for timestamp
+    return randomTime; // Return the timestamp in milliseconds
 }
 
 function formatTimestamp(timestamp) {

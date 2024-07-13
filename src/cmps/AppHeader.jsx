@@ -45,11 +45,12 @@ export function AppHeader() {
                     <NavLink to="/" >Home</NavLink>
                     <NavLink to="/about" >About</NavLink>
                     <NavLink to="/toy" >Toys</NavLink>
-                    <a onClick={onToggleCart} href="#">🛒 Cart</a>
+                    <NavLink to="/dashboard">Dashboard</NavLink> |
+                    {/* <a onClick={onToggleCart} href="#">🛒 Cart</a> */}
 
                 </nav>
             </section>
-            {user ? (
+            {/* {user ? (
                 < section >
                     <span to={`/user/${user._id}`}>Hello {user.fullname} <span>${user.score.toLocaleString()}</span></span>
                     <button onClick={onLogout}>Logout</button>
@@ -58,7 +59,7 @@ export function AppHeader() {
                 <section>
                     <LoginSignup />
                 </section>
-            )}
+            )} */}
         </header>
     )
 }

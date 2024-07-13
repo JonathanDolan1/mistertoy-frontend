@@ -28,13 +28,13 @@ export function AppFooter() {
             <p>
                 Coffeerights to Jonathan Dolan
             </p>
-            <h5>
+            {/* <h5>
                 <span>{shoppingCartCount}</span> Products in your Cart
                 <a href="#" onClick={onToggleCartIsShown}>
                     ({(isCartShown) ? 'hide' : 'show'})
                 </a>
             </h5>
-            <ShoppingCart isCartShown={isCartShown} />
+            <ShoppingCart isCartShown={isCartShown} /> */}
             <UserMsg />
         </footer>
     )
