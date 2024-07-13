@@ -5,7 +5,11 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     animateCSS,
-    debounce
+    debounce,
+    generateRandomToyName,
+    generateRandomToyLabels,
+    getRandomTimestamp,
+    formatTimestamp
 }
 
 function makeId(length = 6) {
@@ -70,4 +74,58 @@ function debounce(func, timeout = 300) {
             func.apply(this, args)
         }, timeout)
     }
+}
+
+function _getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateRandomToyName() {
+    const adjectives = [
+        'Amazing', 'Fun', 'Super', 'Incredible', 'Fantastic',
+        'Magic', 'Adventure', 'Cool', 'Crazy', 'Happy'
+    ];
+
+    const toyTypes = [
+        'Robot', 'Doll', 'Car', 'Puzzle', 'Train',
+        'Animal', 'Game', 'Ball', 'Drone', 'Block'
+    ];
+
+    const randomAdjective = _getRandomElement(adjectives);
+    const randomToyType = _getRandomElement(toyTypes);
+
+    return `${randomAdjective} ${randomToyType}`;
+}
+
+function generateRandomToyLabels() {
+    const labels = [
+        'Fun', 'Educational', 'Interactive', 'Colorful', 'Creative',
+        'Imaginative', 'Durable', 'Safe', 'Engaging', 'Unique'
+    ];
+
+    const length = getRandomIntInclusive(2, 4)
+    const toyLabels = [];
+
+    for (let i = 0; i < length; i++) {
+        const randomLabel = _getRandomElement(labels);
+        toyLabels.push(randomLabel);
+    }
+
+    return toyLabels;
+}
+
+function getRandomTimestamp() {
+    const now = new Date();
+    const tenYearsAgo = new Date();
+    tenYearsAgo.setFullYear(now.getFullYear() - 10);
+
+    const randomTime = Math.random() * (now.getTime() - tenYearsAgo.getTime()) + tenYearsAgo.getTime();
+    const randomDate = new Date(randomTime);
+
+    return randomDate.toISOString(); // Return ISO string format for timestamp
+}
+
+function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString(); // This will use the current locale
 }

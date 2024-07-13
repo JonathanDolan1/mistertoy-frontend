@@ -1,7 +1,7 @@
 // const { useState, useEffect } = React
 // const { useSelector, useDispatch } = ReactRedux
 import { useEffect } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
@@ -13,9 +13,9 @@ import { ADD_TOY_TO_CART } from '../store/reducers/toy.reducer.js'
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
-    const filterBy = useSelector(storeState=>storeState.toyModule.filterBy)
+    const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         loadToys()
             .catch(err => {
@@ -25,7 +25,7 @@ export function ToyIndex() {
     }, [filterBy])
 
     function onSetFilter(filterBy) {
-        setFilterBy(filterBy)   
+        setFilterBy(filterBy)
     }
 
     function onRemoveToy(toyId) {
@@ -42,7 +42,7 @@ export function ToyIndex() {
         const toyToSave = toyService.getEmptyToy()
         saveToy(toyToSave)
             .then((savedToy) => {
-                showSuccessMsg(`Toy added (id: ${savedToy.vendor})`)
+                showSuccessMsg(`Toy added (id: ${savedToy.name})`)
             })
             .catch(err => {
                 console.log('Cannot add toy', err)
@@ -65,29 +65,26 @@ export function ToyIndex() {
     }
 
     function addToCart(toy) {
-        console.log(`Adding ${toy.vendor} to Cart`)
+        console.log(`Adding ${toy.name} to Cart`)
         dispatch({ type: ADD_TOY_TO_CART, toy })
-        showSuccessMsg(`Added ${toy.vendor} to Cart`)
+        showSuccessMsg(`Added ${toy.name} to Cart`)
     }
 
     return (
-        <div>
-            <h3>Toys App</h3>
-            <main>
-                <button onClick={onAddToy}>Add Toy ⛐</button>
-                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-                {isLoading
-                    ? <div>Loading...</div>
-                    : <ToyList
-                        toys={toys}
-                        onRemoveToy={onRemoveToy}
-                        onEditToy={onEditToy}
-                        addToCart={addToCart}
-                    />}
-                <hr />
-                {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
-            </main>
-        </div>
+        <section className='toy-index'>
+
+            <button onClick={onAddToy}>Add Toy</button>
+            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            {isLoading
+                ? <div>Loading...</div>
+                : <ToyList
+                    toys={toys}
+                    onRemoveToy={onRemoveToy}
+                    onEditToy={onEditToy}
+                    addToCart={addToCart}
+                />}
+
+        </section>
     )
 
 }

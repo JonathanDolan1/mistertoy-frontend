@@ -7,6 +7,7 @@ export function loadToys() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     const filterBy = store.getState().toyModule.filterBy
     return toyService.query(filterBy)
+    // return toyService.query({})
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
         })
@@ -55,5 +56,6 @@ export function saveToy(toy) {
 
 
 export function setFilterBy(filterBy) {
+    console.log(filterBy);
     store.dispatch({ type: SET_FILTER_BY, filterBy })
 }

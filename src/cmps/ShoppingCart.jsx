@@ -7,14 +7,12 @@ import { CLEAR_CART, REMOVE_TOY_FROM_CART } from '../store/reducers/toy.reducer.
 
 export function ShoppingCart({ isCartShown }) {
 
-    // const shoppingCart = []
     const shoppingCart = useSelector(storeState => storeState.toyModule.shoppingCart)
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const dispatch = useDispatch()
-    // TODO: get from storeState
+   
 
     function removeFromCart(toyId) {
-        // console.log(`Todo: remove: ${toyId} from cart`)
         dispatch({ type: REMOVE_TOY_FROM_CART, toyId })
     }
 
@@ -48,7 +46,7 @@ export function ShoppingCart({ isCartShown }) {
                     shoppingCart.map((toy, idx) =>
                         <li key={idx}>
                             <button onClick={() => removeFromCart(toy._id)}>x</button>
-                            {toy.vendor} | ${toy.price}
+                            {toy.name} | ${toy.price}
                         </li>
                     )
                 }

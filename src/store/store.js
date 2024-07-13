@@ -1,7 +1,6 @@
 import { toyReducer } from "./reducers/toy.reducer.js"
 import { userReducer } from "./reducers/user.reducer.js"
 
-// const { createStore, combineReducers, compose } = Redux
 import { createStore, combineReducers, compose } from "redux"
 
 const rootReducer = combineReducers({
